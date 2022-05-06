@@ -19,8 +19,9 @@ class MaxElo extends React.Component {
                 {
                     ({table,setTable}) => (
                         <div>
+                            Максимальные изменения рейтинга за всю историю:&nbsp;
                             <button onClick={() => {this.handleClick().then((response) => {setTable(toTable('Максимальные изменения рейтинга',response.data))})}}>
-                                Максимальные изменения рейтинга
+                                Отправить
                             </button>
                         </div>
                     )

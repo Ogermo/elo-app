@@ -9,7 +9,7 @@ import CurrentRating from "./components/CurrentRating";
 import Top from "./components/Top";
 import MaxChange from "./components/MaxChange";
 import Comparison from "./components/Comparison";
-
+import History from "./components/HIstory";
 class App extends React.Component{
 
     setTable = (table) => {
@@ -17,7 +17,7 @@ class App extends React.Component{
     }
 
     state = {
-        table: <div>NOT TABLE</div>,
+        table: <div></div>,
         setTable : this.setTable
     }
 
@@ -33,6 +33,7 @@ class App extends React.Component{
                     <Top />
                     <MaxChange/>
                     <Comparison/>
+                    <History />
 
                     {this.state.table}
                 </div>

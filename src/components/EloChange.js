@@ -27,8 +27,8 @@ class EloChange extends React.Component {
                         <div>
                             <form onSubmit={(event) => {event.preventDefault(); this.handleSubmit().then((response) => {setTable(toTable('Изменение рейтинга',response.data))})}}>
                                 <label>
-                                    Изменение рейтинга после матча:
-                                    <input type="text" value={this.state.matchID} onChange={this.handleChange} />
+                                    Изменение рейтинга после матча:&nbsp;
+                                    <input type="text" value={this.state.matchID} onChange={this.handleChange} placeholder="ID матча"/>
                                 </label>
                                 <input type="submit" value="Отправить" />
                             </form>

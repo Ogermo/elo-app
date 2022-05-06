@@ -17,6 +17,7 @@ class Top extends React.Component {
     }
 
     handleSubmit() {
+        console.log(this.state.date)
         return EloService.top(this.state.date)
     }
 
@@ -32,8 +33,8 @@ class Top extends React.Component {
                         <div>
                             <form onSubmit={(event) => {event.preventDefault(); this.handleSubmit().then((response) => {setTable(toTable('Лидер рейтинга на указанную дату',response.data))})}}>
                                 <label>
-                                    Лидер рейтинга на указанную дату:
-                                    <input type="text" value={this.state.date} onChange={this.handleChange} />
+                                    Лидер рейтинга на указанную дату:&nbsp;
+                                    <input type="datetime-local" value={this.state.date} onChange={this.handleChange} />
                                 </label>
                                 <input type="submit" value="Отправить" />
                                 <button onClick={(event) => {event.preventDefault(); this.handleClick().then((response) => {setTable(toTable('История лидеров',response.data))})}}>История лидеров</button>

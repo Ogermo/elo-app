@@ -42,16 +42,16 @@ class Comparison extends React.Component {
                         <div>
                             <form onSubmit={(event) => {event.preventDefault(); this.handleSubmit().then((response) => {setTable(toTables('Сравнение команд',response.data))})}}>
                                 <label>
-                                    Показатели рейтинга на две указанные даты :
-                                    <input type="text" value={this.state.date1} onChange={this.handleChangeDate1} />
-                                    <input type="text" value={this.state.date2} onChange={this.handleChangeDate2} />
-                                    <input type="text" value={this.state.teamID} onChange={this.handleChangeTeamID} />
+                                    Показатели рейтинга на две указанные даты :&nbsp;
+                                    <input type="datetime-local" value={this.state.date1} onChange={this.handleChangeDate1} />
+                                    <input type="datetime-local" value={this.state.date2} onChange={this.handleChangeDate2} />
+                                    <input type="text" placeholder="ID команды" value={this.state.teamID} onChange={this.handleChangeTeamID} />
                                 </label>
                                 <input type="submit" value="Отправить" />
+                                <button onClick={() => {this.handleClick().then((response) => {setTable(toTables('Сравнение всех команд',response.data))})}}>
+                                    Для всех команд
+                                </button>
                             </form>
-                            <button onClick={() => {this.handleClick().then((response) => {setTable(toTables('Сравнение всех команд',response.data))})}}>
-                                Показать для всех команд
-                            </button>
                         </div>
                     )
                 }

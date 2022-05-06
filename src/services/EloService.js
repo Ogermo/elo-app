@@ -11,7 +11,10 @@ class UserService {
 
     // - `Команда` Рейтинг команды на указанную дату
     current(teamID,date){
-        return axios.get(ELO_REST_API_URL + 'cur?teamID=' + teamID + '&date=' + date)
+        console.log(date)
+        console.log(date.replace('T',' ') + ':00')
+        console.log(date)
+        return axios.get(ELO_REST_API_URL + 'cur?teamID=' + teamID + '&date=' + date.replace('T',' ') + ':00')
     }
 
     // - `Команда`  `График` Рейтинг команды за всю историю
@@ -26,7 +29,7 @@ class UserService {
 
     // - `Рейтинг` Рейтинг всех команд на указанную дату
     currentAll(date){
-        return axios.get(ELO_REST_API_URL + 'stats?date=' + date)
+        return axios.get(ELO_REST_API_URL + 'stats?date=' + date.replace('T',' ') + ':00')
     }
 
     // - `Рейтинг` Максимальный рейтинг всех команд (значение и дата)
@@ -35,7 +38,7 @@ class UserService {
     }
     // - `Рейтинг` Лидер рейтинга на указанную дату
     top(date){
-        return axios.get(ELO_REST_API_URL + 'top?date=' + date);
+        return axios.get(ELO_REST_API_URL + 'top?date=' + date.replace('T',' ') + ':00');
     }
     // - `Рейтинг` Лидеры рейтинга за всю историю
     topHistory(){
@@ -49,11 +52,13 @@ class UserService {
 
     // - Показатели рейтинга (позиция в общем списке и значение рейтинга) на две указанные даты для указанной команды4
     compare(date1,date2,teamID){
-        return axios.get(ELO_REST_API_URL + 'comparison?date1=' + date1 + '&date2=' + date2 + '&teamID=' + teamID);
+        return axios.get(ELO_REST_API_URL + 'comparison?date1='
+            + date1.replace('T',' ') + ':00' + '&date2=' + date2.replace('T',' ') + ':00' + '&teamID=' + teamID);
     }
     // - Показатели рейтинга (позиция в общем списке и значение рейтинга) на две указанные даты для всех команд
     compareAll(date1,date2){
-        return axios.get(ELO_REST_API_URL + 'comparison?date1=' + date1 + '&date2=' + date2);
+        return axios.get(ELO_REST_API_URL + 'comparison?date1='
+            + date1.replace('T',' ') + ':00' + '&date2=' + date2.replace('T',' ') + ':00');
     }
 }
 

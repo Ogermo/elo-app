@@ -1,27 +1,22 @@
 import React from 'react';
 import EloService from "../services/EloService";
 import TableContext from "./TableContext";
-import {toTable} from "../lib/toTable";
-class MaxElo extends React.Component {
+import {toGraph} from "../lib/toGraph";
+class History extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {teamID: '', json:  []};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     handleChange(event) {
         this.setState({teamID: event.target.value});
     }
 
-    handleClick(){
-        return EloService.maxAll()
-    }
-
     handleSubmit() {
-        return EloService.max(this.state.teamID)
+        return EloService.teamHistory(this.state.teamID)
     }
 
     render() {
@@ -30,15 +25,12 @@ class MaxElo extends React.Component {
                 {
                     ({table,setTable}) => (
                         <div>
-                            <form onSubmit={(event) => {event.preventDefault(); this.handleSubmit().then((response) => {setTable(toTable('Изменение рейтинга',response.data))})}}>
+                            <form onSubmit={(event) => {event.preventDefault(); this.handleSubmit().then((response) => {setTable(toGraph('Изменение рейтинга',response.data,"start_Dt","elo"))})}}>
                                 <label>
-                                    Максимальный рейтинг за все время для команды:&nbsp;
+                                    История изменения рейтинга для команды:&nbsp;
                                     <input type="text" value={this.state.teamID} onChange={this.handleChange} placeholder="ID команды"/>
                                 </label>
                                 <input type="submit" value="Отправить" />
-                                <button onClick={() => {this.handleClick().then((response) => {setTable(toTable('Max Elo',response.data))})}}>
-                                    Для всех команд
-                                </button>
                             </form>
                         </div>
                     )
@@ -48,4 +40,4 @@ class MaxElo extends React.Component {
     }
 }
 
-export default MaxElo
+export default History
